@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Administrador extends Trabajador {
@@ -28,38 +29,24 @@ public class Administrador extends Trabajador {
 
         // Condición 1: Ha utilizado algún vehículo al menos 15 veces en el último mes
         long viajesUltimoMes = historialViajes.stream()
-                .filter(viaje -> viaje.getInicio().isAfter(java.time.LocalDateTime.now().minusMonths(1)))
+                .filter(viaje -> viaje.getInicio().toLocalDate().isAfter(LocalDate.now().minusMonths(1)))
                 .count();
         if (viajesUltimoMes >= 15) {
             return true;
         }
 
         // Condición 2: Ha utilizado algún vehículo al menos 10 veces al mes durante 3 meses consecutivos
-        long viajesMesActual = historialViajes.stream()
-        	    .filter(viaje -> viaje.getInicio().toLocalDate().getMonthValue() == java.time.LocalDate.now().getMonthValue())
-        	    .count();
-        long viajesMesAnterior = historialViajes.stream()
-                .filter(viaje -> viaje.getInicio().getMonthValue() == java.time.LocalDate.now().minusMonths(1).getMonthValue())
-                .count();
-        long viajesDosMesesAtras = historialViajes.stream()
-                .filter(viaje -> viaje.getInicio().getMonthValue() == java.time.LocalDate.now().minusMonths(2).getMonthValue())
-                .count();
-
+        long viajesMesActual = contarViajesEnMes(historialViajes, LocalDate.now().getMonthValue());
+        long viajesMesAnterior = contarViajesEnMes(historialViajes, LocalDate.now().minusMonths(1).getMonthValue());
+        long viajesDosMesesAtras = contarViajesEnMes(historialViajes, LocalDate.now().minusMonths(2).getMonthValue());
         if (viajesMesActual >= 10 && viajesMesAnterior >= 10 && viajesDosMesesAtras >= 10) {
             return true;
         }
 
         // Condición 3: Ha utilizado los tres tipos de vehículos al menos una vez cada uno durante 6 meses consecutivos
-        boolean haUsadoMoto = historialViajes.stream()
-                .filter(viaje -> viaje.getVehiculo() instanceof Moto)
-                .anyMatch(viaje -> viaje.getInicio().isAfter(java.time.LocalDateTime.now().minusMonths(6)));
-        boolean haUsadoBicicleta = historialViajes.stream()
-                .filter(viaje -> viaje.getVehiculo() instanceof Bicicleta)
-                .anyMatch(viaje -> viaje.getInicio().isAfter(java.time.LocalDateTime.now().minusMonths(6)));
-        boolean haUsadoPatinete = historialViajes.stream()
-                .filter(viaje -> viaje.getVehiculo() instanceof Patinete)
-                .anyMatch(viaje -> viaje.getInicio().isAfter(java.time.LocalDateTime.now().minusMonths(6)));
-
+        boolean haUsadoMoto = haUtilizadoVehiculoDeTipo(historialViajes, "Moto", 6);
+        boolean haUsadoBicicleta = haUtilizadoVehiculoDeTipo(historialViajes, "Bicicleta", 6);
+        boolean haUsadoPatinete = haUtilizadoVehiculoDeTipo(historialViajes, "Patinete", 6);
         if (haUsadoMoto && haUsadoBicicleta && haUsadoPatinete) {
             return true;
         }
@@ -68,12 +55,15 @@ public class Administrador extends Trabajador {
         return false;
     }
 
-    public void asignarTareasMantenimiento(List<Vehiculo> vehiculos, EncargadoMantenimiento encargado) {
-        for (Vehiculo vehiculo : vehiculos) {
-            if (vehiculo.getNivelBateria() < 20) {
-                // Asignar vehículo al encargado
-                encargado.recogerVehiculo(vehiculo);
-            }
-        }
+    private long contarViajesEnMes(List<Viaje> viajes, int mes) {
+        return viajes.stream()
+                .filter(viaje -> viaje.getInicio().toLocalDate().getMonthValue() == mes)
+                .count();
+    }
+
+    private boolean haUtilizadoVehiculoDeTipo(List<Viaje> viajes, String tipo, int meses) {
+        return viajes.stream()
+                .filter(viaje -> viaje.getVehiculo().getTipo().equalsIgnoreCase(tipo))
+                .anyMatch(viaje -> viaje.getInicio().toLocalDate().isAfter(LocalDate.now().minusMonths(meses)));
     }
 }
