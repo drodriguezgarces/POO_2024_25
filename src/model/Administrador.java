@@ -8,11 +8,6 @@ public class Administrador extends Trabajador {
         super(nombre, dni, saldo, "Administrador");
     }
 
-    // Métodos específicos del administrador
-    public void gestionarUsuarios(List<Persona> personas) {
-        // Lógica para altas, bajas y modificaciones de usuarios
-    }
-
     public void promocionarUsuariosPremium(List<Usuario> usuarios) {
         for (Usuario usuario : usuarios) {
             // Verificar las condiciones para promoción a Premium
