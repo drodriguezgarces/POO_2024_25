@@ -1,6 +1,7 @@
 package model;
 
 public abstract class Persona {
+	
 	protected String nombre;
     protected String dni;
     private double saldo;

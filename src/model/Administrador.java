@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Administrador extends Trabajador {
+	
     public Administrador(String nombre, String dni, double saldo) {
         super(nombre, dni, saldo, "Administrador");
     }

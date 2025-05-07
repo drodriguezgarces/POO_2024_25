@@ -1,6 +1,7 @@
 package model;
 
 public class Moto extends Vehiculo {
+	
     private boolean esGrande;
 
     public Moto(String id, String tipo, double nivelBateria, boolean esGrande) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario extends Persona {
+	
     private boolean esPremium;
     private List<Viaje> historialViajes;
 

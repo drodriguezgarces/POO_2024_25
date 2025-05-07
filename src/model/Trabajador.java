@@ -1,6 +1,7 @@
 package model;
 
 public class Trabajador extends Persona {
+	
 	private String tipo;
 
     public Trabajador(String nombre, String dni, double saldo, String tipo) {

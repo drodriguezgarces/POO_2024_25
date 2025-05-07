@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 public class Viaje {
+	
     private String id;
     private Usuario usuario;
     private Vehiculo vehiculo;

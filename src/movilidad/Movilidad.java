@@ -3,6 +3,7 @@ package movilidad;
 import controller.SistemaController;
 
 public class Movilidad {
+	
     public static void main(String[] args) {
         SistemaController sistema = new SistemaController();
 

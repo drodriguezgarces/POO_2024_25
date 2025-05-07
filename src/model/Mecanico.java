@@ -1,6 +1,7 @@
 package model;
 
 public class Mecanico extends Trabajador {
+	
     public Mecanico(String nombre, String dni, double saldo) {
         super(nombre, dni, saldo, "Mecánico");
     }

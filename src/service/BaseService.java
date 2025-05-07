@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseService {
+	
     private List<Base> bases;
 
     public BaseService() {

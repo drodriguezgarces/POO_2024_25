@@ -1,6 +1,7 @@
 package model;
 
 public class Bicicleta extends Vehiculo {
+	
     public Bicicleta(String id, String tipo, double nivelBateria) {
         super(id, tipo, nivelBateria);
     }

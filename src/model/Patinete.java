@@ -1,6 +1,7 @@
 package model;
 
 public class Patinete extends Vehiculo {
+	
     public Patinete(String id, String tipo, double nivelBateria) {
         super(id, tipo, nivelBateria);
     }

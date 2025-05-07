@@ -1,6 +1,7 @@
 package model;
 
 public abstract class Vehiculo {
+	
     private String id;
     private String tipo;
     private double nivelBateria;

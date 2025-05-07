@@ -3,11 +3,19 @@ package service;
 import model.Usuario;
 import model.Vehiculo;
 import model.Viaje;
+import util.Constants;
+import util.ValidationUtils;
 
 import java.time.LocalDateTime;
 
 public class ViajeService {
+	
     public Viaje iniciarViaje(String id, Usuario usuario, Vehiculo vehiculo) {
+    	if (!ValidationUtils.tieneBateriaSuficiente(vehiculo.getNivelBateria())) {
+    	    System.out.println(Constants.ERROR_BATERIA_INSUFICIENTE);
+    	    return null;
+    	}
+    	
         if (usuario.getSaldo() <= 0) {
             System.out.println("El usuario no tiene saldo suficiente para iniciar un viaje.");
             return null;

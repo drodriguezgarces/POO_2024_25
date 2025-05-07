@@ -1,6 +1,7 @@
 package model;
 
 public class Base {
+	
     private String nombre;
     private int[] coordenadas;
     private int capacidad;
