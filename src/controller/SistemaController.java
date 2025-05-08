@@ -61,4 +61,22 @@ public class SistemaController {
             viajeService.finalizarViaje(viaje, LocalDateTime.now(), 0.5); // Ejemplo de tarifa
         }
     }
+    
+    public void agregarBase(String nombre, int capacidad, int[] coordenadas) {
+    	baseService.agregarBase(nombre, capacidad, coordenadas);
+    }
+    
+ // Método para eliminar una base por su nombre
+    public void eliminarBase(String nombre) {
+        baseService.eliminarBase(nombre);
+    }
+
+    // Método para buscar una base por su nombre
+    public Base buscarBasePorNombre(String nombre) {
+        return baseService.buscarBasePorNombre(nombre);
+    }
+    
+    public void mostrarOcupacionBases() {
+    	baseService.mostrarOcupacionBases();
+    }
 }

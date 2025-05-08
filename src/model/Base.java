@@ -7,7 +7,7 @@ public class Base {
     private int capacidad;
     private int ocupacion;
 
-    public Base(String nombre, int[] coordenadas, int capacidad) {
+    public Base(String nombre, int capacidad, int[] coordenadas) {
         this.nombre = nombre;
         this.coordenadas = coordenadas;
         this.capacidad = capacidad;
@@ -21,6 +21,10 @@ public class Base {
 
     public int[] getCoordenadas() {
         return coordenadas;
+    }
+    
+    public void setCoordenadas(int[] coordenadas) {
+    	this.coordenadas = coordenadas;
     }
 
     public int getCapacidad() {

@@ -14,18 +14,19 @@ public class BaseService {
     }
 
     // Agregar base
-    public void agregarBase(Base base) {
-        bases.add(base);
-        System.out.println("Base agregada: " + base.getNombre());
+    public void agregarBase(String nombre, int capacidad, int[] coordenadas) {
+    	Base nuevaBase = new Base(nombre, capacidad, coordenadas);
+        bases.add(nuevaBase);
+        System.out.println("Base agregada: " + nombre + " en coordenadas [" + coordenadas[0] + ", " + coordenadas[1] + "]");
     }
 
-    // Eliminar base
+ // Eliminar base
     public void eliminarBase(String nombre) {
         bases.removeIf(base -> base.getNombre().equals(nombre));
         System.out.println("Base " + nombre + " eliminada.");
     }
 
-    // Consultar base por nombre
+    // Buscar base por nombre
     public Base buscarBasePorNombre(String nombre) {
         for (Base base : bases) {
             if (base.getNombre().equals(nombre)) {
@@ -36,10 +37,12 @@ public class BaseService {
         return null;
     }
 
-    // Consultar ocupación de todas las bases
+    // Mostrar ocupación de todas las bases
     public void mostrarOcupacionBases() {
         for (Base base : bases) {
-            System.out.println("Base: " + base.getNombre() + " | Ocupación: " + base.getOcupacion() + "/" + base.getCapacidad());
+            System.out.println("Base: " + base.getNombre() + 
+                               " | Ocupación: " + base.getOcupacion() + "/" + base.getCapacidad() +
+                               " | Coordenadas: [" + base.getCoordenadas()[0] + ", " + base.getCoordenadas()[1] + "]");
         }
     }
 }
