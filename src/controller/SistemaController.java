@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 import service.*;
+import util.Constants;
 
 import java.time.LocalDateTime;
 
@@ -58,7 +59,8 @@ public class SistemaController {
                              .orElse(null);
 
         if (viaje != null) {
-            viajeService.finalizarViaje(viaje, LocalDateTime.now(), 0.5); // Ejemplo de tarifa
+            double tarifaPorMinuto = usuario.isEsPremium() ? Constants.TARIFA_PREMIUM : Constants.TARIFA_REGULAR;
+            viajeService.finalizarViaje(viaje, LocalDateTime.now(), tarifaPorMinuto);
         }
     }
     
