@@ -17,7 +17,7 @@ public class ViajeService {
     	}
     	
         if (usuario.getSaldo() <= 0) {
-            System.out.println("El usuario no tiene saldo suficiente para iniciar un viaje.");
+            System.out.println(Constants.ERROR_SALDO_INSUFICIENTE);
             return null;
         }
 
