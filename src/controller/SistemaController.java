@@ -31,6 +31,11 @@ public class SistemaController {
 			usuarioService.eliminarUsuario(usuario.getDni());
 		}
 	}
+	
+	public Usuario buscarUsuarioPorDni(String dni) {
+		return null;
+		
+	}
 
 	public void agregarVehiculo(String id, String tipo, double nivelBateria, boolean esGrande) {
 		Vehiculo vehiculo;
